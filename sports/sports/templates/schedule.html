@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>경기 일정</title>
+    <!-- 부트스트랩 링크 추가 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- 커스텀 CSS 스타일링 추가 -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            text-align: right;
+        }
+
+        select.form-control {
+            width: 200px;
+        }
+
+        .table {
+            background-color: #ffffff;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        th,
+        td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        .badge-primary {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">경기 일정</h1>
+
+        <div class="form-group">
+            <!-- 종목별 필터 드롭다운 -->
+            <select id="filterSport" class="form-control">
+                <option value="all">전체 종목</option>
+                <option value="양궁">양궁</option>
+                <option value="다이빙">다이빙</option>
+                <option value="사이클로드">사이클로드</option>
+                <option value="배드민턴">배드민턴</option>
+                <option value="클라이밍">클라이밍</option>
+                <option value="항저우 아시안게임">항저우 아시안게임</option>
+                <!-- 다른 종목들도 추가 -->
+            </select>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>날짜</th>
+                        <th>시간</th>
+                        <th>종목</th>
+                        <th>이름</th>
+                        <th>선수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in schedule %}
+                    <tr data-sport="{{ event.kind }}">
+                        <td>
+                            <!-- 부트스트랩 클래스를 사용하여 날짜 스타일링 -->
+                            <span class="badge badge-primary">{{ event.date2.strftime('%Y-%m-%d') }}</span>
+                        </td>
+                        <td>{{ event.time }}</td>
+                        <td>{{ event.kind }}</td>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.player }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/cheer" class="btn btn-primary">응원하러가기</a>
+        <a href="/video" class="btn btn-primary">영상보러가기</a>
+        <a class="btn btn-primary" href="/">홈으로 돌아가기</a>
+    </div>
+
+    <!-- 부트스트랩 스크립트 추가 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript로 필터링 기능 추가 -->
+    <script>
+        $(document).ready(function () {
+            // 종목 필터링
+            $("#filterSport").change(function () {
+                var selectedSport = $(this).val();
+                if (selectedSport === "all") {
+                    $("tbody tr").show();
+                } else {
+                    $("tbody tr").hide();
+                    $("tbody tr[data-sport='" + selectedSport + "']").show();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
