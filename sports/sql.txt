@@ -94,3 +94,20 @@ VALUES
     ('윤지수', '펜싱', 1, '2023-09-26'),
     ('박하준', '사격', 2, '2023-09-25'),
     ('이지훈', '근대 5종', 2, '2023-09-24');
+
+    ###########테이블 생성
+    CREATE TABLE plan (
+        ->     id INT PRIMARY KEY,
+        ->     date2 DATE,
+        ->     time TIME,
+        ->     kind VARCHAR(50),
+        ->     name VARCHAR(100),
+        ->     player VARCHAR(255)
+        -> );
+
+
+CREATE TABLE cheer (
+    ->     cheer_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     date DATETIME NOT NULL,
+    ->     content VARCHAR(200) NOT NULL
+    -> );
