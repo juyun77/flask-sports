@@ -1,14 +1,27 @@
 
 import os
 
-BASE_DIR = os.path.dirname(__file__)
+class Config(object):
 
-# MySQL 연결 설정 예시
-# 포맷: mysql+pymysql://<사용자명>:<비밀번호>@<호스트>/<데이터베이스명>?charset=utf8mb4
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:1111@localhost/sports?charset=utf8mb4'
 
-SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # 데이터베이스 설정
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:1111@localhost/sports'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # 추가적인 설정이 필요할 경우 이곳에 추가
+
+
+#
+# import os
+#
+# BASE_DIR = os.path.dirname(__file__)
+#
+# # MySQL 연결 설정 예시
+# # 포맷: mysql+pymysql://<사용자명>:<비밀번호>@<호스트>/<데이터베이스명>?charset=utf8mb4
+# SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:1111@localhost/sports?charset=utf8mb4'
+#
+# SQLALCHEMY_TRACK_MODIFICATIONS = False
+#
 
 # import os
 

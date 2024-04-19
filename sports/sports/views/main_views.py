@@ -3,6 +3,9 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sports import db
 from sports.models import plan, player,Cheer
+from flask import current_app
+
+
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -41,11 +44,21 @@ def get_game_schedule():
     schedule = plan.query.all()
     return schedule
 
+
+
+
+
 @bp.route('/schedule')
-def index4():
-    # 템플릿에 경기 일정 데이터 전달
-    beverage_list = plan.query.order_by(plan.date2)
-    return render_template('schedule.html', schedule=beverage_list)
+def show_schedule():
+    try:
+        events = plan.query.all()
+        current_app.logger.info(f"Fetched {len(events)} events")
+    except Exception as e:
+        current_app.logger.error("Failed to fetch events", exc_info=True)
+        events = []
+    return render_template('schedule.html', schedule=events)
+
+
 
 @bp.route('/result')
 def index5():
