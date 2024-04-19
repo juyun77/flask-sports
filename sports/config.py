@@ -4,7 +4,7 @@ class Config(object):
 
 
     # 데이터베이스 설정
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:lUsaDKz2G5u9JtGk@aws-rds-cluster-jy-dev-juyun-aurora-juyun-db.cluster-ctio0ekaopa2.ap-northeast-2.rds.amazonaws.com/sports'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:It12345!@rds-jy.cluster-ctio0ekaopa2.ap-northeast-2.rds.amazonaws.com/sports'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
