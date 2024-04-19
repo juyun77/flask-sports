@@ -10,6 +10,9 @@ COPY sports /app
 # 필요한 패키지를 설치합니다.
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN flask db init
+RUN flask db migrate
+
 # 환경 변수를 설정합니다.
 # sports 디렉토리 내의 __init__.py 파일을 사용하여 Flask 애플리케이션을 실행합니다.
 ENV FLASK_APP=sports
