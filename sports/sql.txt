@@ -111,3 +111,11 @@ CREATE TABLE cheer (
     ->     date DATETIME NOT NULL,
     ->     content VARCHAR(200) NOT NULL
     -> );
+
+
+CREATE TABLE player (
+    name VARCHAR(200) PRIMARY KEY,
+    kind VARCHAR(200) NOT NULL,
+    rank INT NOT NULL,
+    date DATETIME NOT NULL
+);
