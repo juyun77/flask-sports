@@ -96,26 +96,24 @@ VALUES
     ('이지훈', '근대 5종', 2, '2023-09-24');
 
     ###########테이블 생성
-    CREATE TABLE plan (
-        ->     id INT PRIMARY KEY,
-        ->     date2 DATE,
-        ->     time TIME,
-        ->     kind VARCHAR(50),
-        ->     name VARCHAR(100),
-        ->     player VARCHAR(255)
-        -> );
-
+CREATE TABLE plan (
+    id INT PRIMARY KEY,
+    date2 DATE,
+    time TIME,
+    kind VARCHAR(50),
+    name VARCHAR(100),
+    player VARCHAR(255)
+);
 
 CREATE TABLE cheer (
-    ->     cheer_id INT AUTO_INCREMENT PRIMARY KEY,
-    ->     date DATETIME NOT NULL,
-    ->     content VARCHAR(200) NOT NULL
-    -> );
-
+    cheer_id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATETIME NOT NULL,
+    content VARCHAR(200) NOT NULL
+);
 
 CREATE TABLE player (
     name VARCHAR(200) PRIMARY KEY,
     kind VARCHAR(200) NOT NULL,
-    rank INT NOT NULL,
+    `rank` INT NOT NULL,
     date DATETIME NOT NULL
 );
