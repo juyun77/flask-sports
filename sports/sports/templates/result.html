@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>경기 결과 홈페이지</title>
+    <title>선수 소개</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -19,7 +19,7 @@
         }
 
         h1 {
-            color: #333;
+            color: #000000; /* 제목 검정색 */
             text-align: center;
         }
 
@@ -35,7 +35,7 @@
         }
 
         th {
-            background-color: #333;
+            background-color: #b30000; /* 빨간색 테이블 헤더 */
             color: #fff;
         }
 
@@ -51,49 +51,70 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #b30000; /* 빨간색 버튼 */
             color: #fff;
             text-decoration: none;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-
         }
 
         .home-button:hover {
-            background-color: #0056b3;
+            background-color: #800000; /* 어두운 빨간색 버튼 */
+        }
+
+        .player-img {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 10px;
+            box-shadow: 0 2px 5px rgba(179, 0, 0, 0.3); /* 빨간색 그림자 */
+        }
+
+        .player-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #000000; /* 이름 검정색 */
+            margin-bottom: 5px;
+        }
+
+        .player-info {
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>경기 결과</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">이름</th>
-                    <th scope="col">종류</th>
-                    <th scope="col">랭크</th>
-                    <th scope="col">날짜</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in players %}
-                <tr>
-                    <td>{{ player.name }}</td>
-                    <td>{{ player.kind }}</td>
-                    <td>{{ player.rank }}</td>
-                    <td>{{ player.date.strftime('%Y-%m-%d') }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <a class="home-button" href="/">홈으로 돌아가기</a>
-    </div>
+<div class="container">
+    <h1>선수 소개</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">이름</th>
+            <th scope="col">포지션</th>
+            <th scope="col">스타일</th>
+            <th scope="col">선수번호</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for player in players %}
+        <tr>
+            <td class="player-info">
+                <img src="{{ url_for('static', filename='image/' + player.name) }}" alt="{{ player.name }}" class="player-img">
+                <div class="player-name">{{ player.name[:-4] }}</div> <!-- .png 확장자 제거 -->
+            </td>
+            <td>{{ player.kind }}</td>
+            <td>{{ player.handedness }}</td>
+            <td>{{ player.date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="home-button" href="/">홈으로 돌아가기</a>
+</div>
 </body>
-
 </html>

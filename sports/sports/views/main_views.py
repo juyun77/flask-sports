@@ -62,6 +62,6 @@ def show_schedule():
 
 @bp.route('/result')
 def index5():
-    players = player.query.order_by(player.date)
+    players = player.query.all()
     return render_template('result.html', players=players)
 
